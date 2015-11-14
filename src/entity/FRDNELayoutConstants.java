@@ -20,5 +20,7 @@ public class FRDNELayoutConstants {
     // LayOut Constants 
     public final static String FILE_INTERFACE_ID = "000";
     public final static String BUSSINESS_PARTNERS = "100";
+    
+    // Test
 
 }
