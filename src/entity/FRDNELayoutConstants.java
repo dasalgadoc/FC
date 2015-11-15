@@ -64,7 +64,9 @@ public class FRDNELayoutConstants {
     public final static int BEGIN_TRANSMITTER_CNPJ = 4;
     public final static int END_TRANSMITTER_CNPJ = 20;
     public final static int BEGIN_FISCAL_NOTE = 20;
-    public final static int END_FISCAL_NOTE = 32;
+    
+    // I remove two spaces that area actually white, that's no a good practice but it's quite real.
+    public final static int END_FISCAL_NOTE = 30;
     public final static int BEGIN_DOCUMENT_SERIE = 32;
     public final static int END_DOCUMENT_SERIE = 35;
     public final static int BEGIN_DOCUMENT_EMISSION_DATE = 35;
@@ -85,22 +87,4 @@ public class FRDNELayoutConstants {
     //		Dados dos itens do documento de transporte utilizado pela transportadora.
     
     
-    // Version 1.0 Code
-	
-	public final static int FISCAL_NOTE_ROW = 2;
-    public final static int START_FISCAL_NOTE = 20;
-    //public final static int END_FISCAL_NOTE = 30;
-    public final static int START_CITY = 164;
-    public final static int END_CITY = 189;
-    public final static int START_STATE = 194;
-    public final static int END_STATE = 196;
-    public final static int CITY_STATE_ROW = 1;
-    
-    //	Version 1.1 Code
-    
-    public final static int START_DATE_1 = 35;
-    public final static int END_DATE_1 = 44;
-    public final static int START_DATE_2 = 45;
-    public final static int END_DATE_2 = 54;
-
 }
