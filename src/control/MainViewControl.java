@@ -181,11 +181,29 @@ public class MainViewControl {
 											entity.FRDNELayoutConstants.END_DOCUMENT_SHIPMENT_DATE);
 							if (new java.util.Date(emissionDate)
 									.before(new java.util.Date(shipmentDate))) {
+								java.io.File to = new java.io.File(mainView
+										.getDestinyAddressText().getText()
+										+ MAJOR_SHIPMENT
+										+ temp.getName());
+								java.nio.file.Files
+										.copy(temp.toPath(), to.toPath());
 								majorShipmentDate++;
 							} else if (new java.util.Date(emissionDate)
 									.after(new java.util.Date(shipmentDate))) {
+								java.io.File to = new java.io.File(mainView
+										.getDestinyAddressText().getText()
+										+ MAJOR_EMISSION
+										+ temp.getName());
+								java.nio.file.Files
+										.copy(temp.toPath(), to.toPath());
 								majorEmissionDate++;
 							} else {
+								java.io.File to = new java.io.File(mainView
+										.getDestinyAddressText().getText()
+										+ EQUAL_DATA
+										+ temp.getName());
+								java.nio.file.Files
+										.copy(temp.toPath(), to.toPath());
 								equalDate++;
 							}
 						}
@@ -394,7 +412,13 @@ public class MainViewControl {
 				.getText() + EMPTY).mkdirs());
 		boolean success1 = (new java.io.File(mainView.getDestinyAddressText()
 				.getText() + NOT_EMPTY).mkdirs());
-		return success && success1;
+		boolean success2 = (new java.io.File(mainView.getDestinyAddressText()
+				.getText() + EQUAL_DATA).mkdirs());
+		boolean success3 = (new java.io.File(mainView.getDestinyAddressText()
+				.getText() + MAJOR_EMISSION).mkdirs());
+		boolean success4 = (new java.io.File(mainView.getDestinyAddressText()
+				.getText() + MAJOR_SHIPMENT).mkdirs());
+		return success && success1 && success2 && success3 && success4;
 	}
 
 	public void getReport() {
@@ -405,7 +429,10 @@ public class MainViewControl {
 	private String logs[];
 	private java.io.File folder;
 	private java.io.File files[];
-
+	
+	private final String EQUAL_DATA = "\\Iguales\\";
+	private final String MAJOR_EMISSION = "\\Emision\\";
+	private final String MAJOR_SHIPMENT = "\\Embarque\\";
 	private final String EMPTY = "\\Vacios\\";
 	private final String NOT_EMPTY = "\\Llenos\\";
 	private final String COMPARE = "\\ComparacionOK\\";

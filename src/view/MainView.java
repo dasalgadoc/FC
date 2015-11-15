@@ -159,7 +159,7 @@ public final class MainView extends javax.swing.JFrame {
             }
         });
 
-        CityCheck.setText("Separar archivos según críterio Ciudad");
+        CityCheck.setText("Separar archivos según críterio Ciudad y Fecha");
         CityCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CityCheckActionPerformed(evt);
