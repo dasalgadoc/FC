@@ -15,71 +15,45 @@ public class MainViewControl {
     }
     
     public void setInitialConditions(){
-        mainView.getResultTable().setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-            },
-            new String [] {
-                "FRDNE", "Nota Fiscal", "Ciudad", "Estado"
-            }
-        ));
         mainView.getDestinyFoldersCheck().setSelected(false);
         mainView.getCompareFRDNECheck().setSelected(false);
+        mainView.getCityCheck().setSelected(false);
+        
         mainView.getGlobalStateLabel().setText(INITIAL_PARAMETERS);
         mainView.getComparatorAddressText().setText(null);
         mainView.getFRDNEAddressText().setText(null);
         mainView.getDestinyAddressText().setText(null);
+        
         checkConditions();
     }
     
     public void checkConditions(){
         boolean destiny = mainView.getDestinyFoldersCheck().isSelected();
         boolean compare = mainView.getCompareFRDNECheck().isSelected();
+        boolean city = mainView.getCityCheck().isSelected();
         
-        mainView.getDestinyAddressButton().setEnabled(destiny || compare);
+        mainView.getDestinyAddressButton().setEnabled(destiny || compare || city);
         mainView.getComparatorAddressButton().setEnabled(compare);
         
-        mainView.getStartProccessButton().setEnabled(checkStart(destiny, compare));
-        mainView.getExportResultButton().setEnabled(checkTableDestiny(destiny));
-        mainView.getExportComparatorButton().setEnabled(checkTableTxt(compare));
+        mainView.getStartProccessButton().setEnabled(checkStart(destiny, compare, city));
     }
     
-    private boolean checkStart(boolean destiny, boolean compare){
+    private boolean checkStart(boolean destiny, boolean compare, boolean city){
         boolean result = false;
-        if(!mainView.getFRDNEAddressText().getText().isEmpty() && !(destiny || compare)){
+        if(!mainView.getFRDNEAddressText().getText().isEmpty() && !(destiny || compare || city)){
             result = true;
         }
-        if(!mainView.getFRDNEAddressText().getText().isEmpty() && destiny && !mainView.getDestinyAddressText().getText().isEmpty()){
+        if(!mainView.getFRDNEAddressText().getText().isEmpty() && (destiny || city) && !mainView.getDestinyAddressText().getText().isEmpty() && !compare){
             result = true;
         }
         if(!mainView.getFRDNEAddressText().getText().isEmpty() && compare && !mainView.getDestinyAddressText().getText().isEmpty() &&
                 !mainView.getComparatorAddressText().getText().isEmpty()){
             result = true;
         }
-        /*
         if(result){
             mainView.getGlobalStateLabel().setText(READY);
         }else{
             mainView.getGlobalStateLabel().setText(INITIAL_PARAMETERS);
-        }*/
-        return result;
-    }
-    
-    private boolean checkTableDestiny(boolean destiny){
-        boolean result = false;
-        if(mainView.getResultTable().getRowCount()>0){
-            if(destiny && !mainView.getDestinyAddressText().getText().isEmpty()){
-                result = true;
-            }
-        }
-        return result;
-    }
-    
-    private boolean checkTableTxt(boolean compare){
-        boolean result = false;
-        if(mainView.getResultTable().getRowCount()>0){
-            if(compare && !mainView.getDestinyAddressText().getText().isEmpty() && !mainView.getComparatorAddressText().getText().isEmpty()){
-                result = true;
-            }
         }
         return result;
     }
@@ -90,6 +64,10 @@ public class MainViewControl {
     
     public void getARoute(String type, String component){
         view.FileChooser fileChooser = new view.FileChooser(this, type, component);
+    }
+    
+    public void getReport(){
+    	
     }
     
     public void updateRoute(String component,String route){
@@ -235,10 +213,6 @@ public class MainViewControl {
                         }
                         lectureFile.close();
                     }
-                    // Llenado de la tabla
-                    String row[] = {temp.getName(), fiscalNote, city, state};
-                    javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) mainView.getResultTable().getModel();
-                    model.addRow(row);
                 }
                 mainView.getGlobalStateLabel().setText(FILE_COUNT_HEAD + files.length + FILE_COUNT_TRAILER);
                 // 05-Noviembre

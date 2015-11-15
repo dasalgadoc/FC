@@ -3,7 +3,6 @@ package view;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -24,11 +23,11 @@ public final class MainView extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.setResizable(true);
+        this.setResizable(false);
     }
     
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -43,14 +42,12 @@ public final class MainView extends javax.swing.JFrame {
         FRDNEAddressButton = new javax.swing.JButton();
         DestinyAddressButton = new javax.swing.JButton();
         ComparatorAddressButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        ResultTable = new javax.swing.JTable();
         GlobalStateLabel = new javax.swing.JLabel();
-        ExportComparatorButton = new javax.swing.JButton();
-        ExportResultButton = new javax.swing.JButton();
-        StartProccessButton = new javax.swing.JButton();
-        CompareFRDNECheck = new javax.swing.JCheckBox();
+        ReportButton = new javax.swing.JButton();
         RestartButton = new javax.swing.JButton();
+        CityCheck = new javax.swing.JCheckBox();
+        CompareFRDNECheck = new javax.swing.JCheckBox();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,7 +110,7 @@ public final class MainView extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(DestinyAddressText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                    .addComponent(DestinyAddressText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                     .addComponent(ComparatorAddressText)
                     .addComponent(FRDNEAddressText, javax.swing.GroupLayout.Alignment.LEADING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -144,52 +141,14 @@ public final class MainView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        ResultTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "FRDNE", "Nota Fiscal", "Ciudad", "Estado"
-            }
-        ));
-        ResultTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(ResultTable);
-        if (ResultTable.getColumnModel().getColumnCount() > 0) {
-            ResultTable.getColumnModel().getColumn(0).setResizable(false);
-            ResultTable.getColumnModel().getColumn(1).setResizable(false);
-            ResultTable.getColumnModel().getColumn(2).setResizable(false);
-            ResultTable.getColumnModel().getColumn(3).setResizable(false);
-        }
-
         GlobalStateLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         GlobalStateLabel.setForeground(new java.awt.Color(255, 0, 0));
         GlobalStateLabel.setText("LABEL DE ESTADO ---------------");
 
-        ExportComparatorButton.setText("Exportar TXT");
-        ExportComparatorButton.addActionListener(new java.awt.event.ActionListener() {
+        ReportButton.setText("Iniciar Proceso");
+        ReportButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExportComparatorButtonActionPerformed(evt);
-            }
-        });
-
-        ExportResultButton.setText("Exportar Tabla");
-        ExportResultButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExportResultButtonActionPerformed(evt);
-            }
-        });
-
-        StartProccessButton.setText("Iniciar Proceso");
-        StartProccessButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StartProccessButtonActionPerformed(evt);
-            }
-        });
-
-        CompareFRDNECheck.setText("Comparar con Archivo");
-        CompareFRDNECheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CompareFRDNECheckActionPerformed(evt);
+                ReportButtonActionPerformed(evt);
             }
         });
 
@@ -200,99 +159,114 @@ public final class MainView extends javax.swing.JFrame {
             }
         });
 
+        CityCheck.setText("Separar archivos según críterio Ciudad");
+        CityCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CityCheckActionPerformed(evt);
+            }
+        });
+
+        CompareFRDNECheck.setText("Comparar con Archivo");
+        CompareFRDNECheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CompareFRDNECheckActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Generar Informe");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CompareFRDNECheck, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DestinyFoldersCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(GlobalStateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(StartProccessButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(ExportResultButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(ExportComparatorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(RestartButton)))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(CompareFRDNECheck, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CityCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(DestinyFoldersCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(GlobalStateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(ReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(RestartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(DestinyFoldersCheck)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CityCheck)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CompareFRDNECheck)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(DestinyFoldersCheck)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, Short.MAX_VALUE)
-                        .addComponent(CompareFRDNECheck)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(GlobalStateLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(StartProccessButton)
-                            .addComponent(ExportResultButton)
-                            .addComponent(ExportComparatorButton)
-                            .addComponent(RestartButton))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(GlobalStateLabel)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RestartButton)
+                    .addComponent(jButton1)
+                    .addComponent(ReportButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void DestinyFoldersCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DestinyFoldersCheckActionPerformed
+    private void DestinyFoldersCheckActionPerformed(java.awt.event.ActionEvent evt) {                                                    
         myController.checkConditions();
-    }//GEN-LAST:event_DestinyFoldersCheckActionPerformed
+    }                                                   
 
-    private void CompareFRDNECheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompareFRDNECheckActionPerformed
+    private void CompareFRDNECheckActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         myController.checkConditions();
-    }//GEN-LAST:event_CompareFRDNECheckActionPerformed
+    }                                                 
 
-    private void FRDNEAddressButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FRDNEAddressButtonActionPerformed
+    private void FRDNEAddressButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                   
         myController.getARoute(FOLDER,FRDNE);
-    }//GEN-LAST:event_FRDNEAddressButtonActionPerformed
+    }                                                  
 
-    private void DestinyAddressButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DestinyAddressButtonActionPerformed
+    private void DestinyAddressButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                     
         myController.getARoute(FOLDER,DESTINY);
-    }//GEN-LAST:event_DestinyAddressButtonActionPerformed
+    }                                                    
 
-    private void ComparatorAddressButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComparatorAddressButtonActionPerformed
+    private void ComparatorAddressButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                        
         myController.getARoute(FILE, TXT);
-    }//GEN-LAST:event_ComparatorAddressButtonActionPerformed
+    }                                                       
 
-    private void ExportComparatorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportComparatorButtonActionPerformed
-
-    }//GEN-LAST:event_ExportComparatorButtonActionPerformed
-
-    private void ExportResultButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportResultButtonActionPerformed
-
-    }//GEN-LAST:event_ExportResultButtonActionPerformed
-
-    private void StartProccessButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartProccessButtonActionPerformed
+    private void ReportButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         myController.startProccess();
-    }//GEN-LAST:event_StartProccessButtonActionPerformed
+    }                                            
 
-    private void RestartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestartButtonActionPerformed
+    private void RestartButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         myController.setInitialConditions();
-    }//GEN-LAST:event_RestartButtonActionPerformed
+    }                                             
+
+    private void CityCheckActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        myController.checkConditions();
+    }                                         
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        myController.getReport();
+    }                                        
 
     public JTextField getComparatorAddressText() {
         return ComparatorAddressText;
@@ -334,14 +308,6 @@ public final class MainView extends javax.swing.JFrame {
         this.CompareFRDNECheck = CompareFRDNECheck;
     }
 
-    public JTable getResultTable() {
-        return ResultTable;
-    }
-
-    public void setResultTable(JTable ResultTable) {
-        this.ResultTable = ResultTable;
-    }
-
     public JButton getComparatorAddressButton() {
         return ComparatorAddressButton;
     }
@@ -366,22 +332,6 @@ public final class MainView extends javax.swing.JFrame {
         this.FRDNEAddressButton = FRDNEAddressButton;
     }
 
-    public JButton getExportComparatorButton() {
-        return ExportComparatorButton;
-    }
-
-    public void setExportComparatorButton(JButton ExportComparatorButton) {
-        this.ExportComparatorButton = ExportComparatorButton;
-    }
-
-    public JButton getExportResultButton() {
-        return ExportResultButton;
-    }
-
-    public void setExportResultButton(JButton ExportResultButton) {
-        this.ExportResultButton = ExportResultButton;
-    }
-
     public JLabel getGlobalStateLabel() {
         return GlobalStateLabel;
     }
@@ -391,11 +341,27 @@ public final class MainView extends javax.swing.JFrame {
     }
 
     public JButton getStartProccessButton() {
-        return StartProccessButton;
+        return ReportButton;
     }
 
     public void setStartProccessButton(JButton StartProccessButton) {
-        this.StartProccessButton = StartProccessButton;
+        this.ReportButton = StartProccessButton;
+    }
+
+    public JCheckBox getCityCheck() {
+        return CityCheck;
+    }
+
+    public void setCityCheck(JCheckBox CityCheck) {
+        this.CityCheck = CityCheck;
+    }
+
+    public JButton getReportButton() {
+        return ReportButton;
+    }
+
+    public void setReportButton(JButton ReportButton) {
+        this.ReportButton = ReportButton;
     }
     
     public void lookAndFeel(){
@@ -419,26 +385,24 @@ public final class MainView extends javax.swing.JFrame {
     private final String DESTINY = "DESTINY";
     private final String TXT = "TXT";
     
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
+    private javax.swing.JCheckBox CityCheck;
     private javax.swing.JButton ComparatorAddressButton;
     private javax.swing.JTextField ComparatorAddressText;
     private javax.swing.JCheckBox CompareFRDNECheck;
     private javax.swing.JButton DestinyAddressButton;
     private javax.swing.JTextField DestinyAddressText;
     private javax.swing.JCheckBox DestinyFoldersCheck;
-    private javax.swing.JButton ExportComparatorButton;
-    private javax.swing.JButton ExportResultButton;
     private javax.swing.JButton FRDNEAddressButton;
     private javax.swing.JTextField FRDNEAddressText;
     private javax.swing.JLabel GlobalStateLabel;
+    private javax.swing.JButton ReportButton;
     private javax.swing.JButton RestartButton;
-    private javax.swing.JTable ResultTable;
-    private javax.swing.JButton StartProccessButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
