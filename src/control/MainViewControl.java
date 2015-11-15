@@ -58,16 +58,8 @@ public class MainViewControl {
         return result;
     }
     
-    public void startProccess(){
-        boolean result = proccess();
-    }
-    
     public void getARoute(String type, String component){
         view.FileChooser fileChooser = new view.FileChooser(this, type, component);
-    }
-    
-    public void getReport(){
-    	
     }
     
     public void updateRoute(String component,String route){
@@ -81,10 +73,8 @@ public class MainViewControl {
         checkConditions();
     }
     
-    @SuppressWarnings("deprecation")
-	private boolean proccess(){
-        boolean result = false;
-        try{
+    public void startProccess(){
+    	try{
             folder = new java.io.File(mainView.getFRDNEAddressText().getText());
             if(folder.exists()){
                 java.io.BufferedReader buffRead = null;
@@ -236,7 +226,6 @@ public class MainViewControl {
                     javax.swing.JOptionPane.showMessageDialog(mainView, COPY_FILES_HEAD + descartableFiles + COPY_FILES_TRAILER + DESCARTABLE, INFORMATION, 
                             javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 }
-                result = true;
                 checkConditions();
             }else{
                 javax.swing.JOptionPane.showMessageDialog(mainView, UNEXISTED_FOLDER, ERROR, 
@@ -246,7 +235,6 @@ public class MainViewControl {
             javax.swing.JOptionPane.showMessageDialog(mainView, UNEXPECTED_ERROR, ERROR, 
                     javax.swing.JOptionPane.ERROR_MESSAGE);
         }
-        return result;
     }
     
     private boolean checkDescartability(java.io.File temp) throws FileNotFoundException, IOException{
@@ -283,13 +271,15 @@ public class MainViewControl {
         return result;
     }
     
-    // 05-Noviembre
     private boolean createEmptyFolders(){
     	boolean success =  (new java.io.File(mainView.getDestinyAddressText().getText()+EMPTY).mkdirs());
     	boolean success1 = (new java.io.File(mainView.getDestinyAddressText().getText()+NOT_EMPTY).mkdirs());
     	return success && success1;
     }
-    //
+    
+    public void getReport(){
+    	
+    }
     
     private final view.MainView mainView;
     private java.io.File folder;
