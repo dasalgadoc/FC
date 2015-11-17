@@ -23,7 +23,7 @@ public final class MainView extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.setResizable(false);
+        this.setResizable(true);
     }
     
     @SuppressWarnings("unchecked")
