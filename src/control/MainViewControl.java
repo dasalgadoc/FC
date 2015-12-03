@@ -179,33 +179,7 @@ public class MainViewControl {
 									.substring(
 											entity.FRDNELayoutConstants.BEGIN_DOCUMENT_SHIPMENT_DATE,
 											entity.FRDNELayoutConstants.END_DOCUMENT_SHIPMENT_DATE);
-							if (new java.util.Date(emissionDate)
-									.before(new java.util.Date(shipmentDate))) {
-								java.io.File to = new java.io.File(mainView
-										.getDestinyAddressText().getText()
-										+ MAJOR_SHIPMENT
-										+ temp.getName());
-								java.nio.file.Files
-										.copy(temp.toPath(), to.toPath());
-								majorShipmentDate++;
-							} else if (new java.util.Date(emissionDate)
-									.after(new java.util.Date(shipmentDate))) {
-								java.io.File to = new java.io.File(mainView
-										.getDestinyAddressText().getText()
-										+ MAJOR_EMISSION
-										+ temp.getName());
-								java.nio.file.Files
-										.copy(temp.toPath(), to.toPath());
-								majorEmissionDate++;
-							} else {
-								java.io.File to = new java.io.File(mainView
-										.getDestinyAddressText().getText()
-										+ EQUAL_DATA
-										+ temp.getName());
-								java.nio.file.Files
-										.copy(temp.toPath(), to.toPath());
-								equalDate++;
-							}
+		
 						}
 						countFiles++;
 					}
@@ -213,8 +187,37 @@ public class MainViewControl {
 					constructLog(temp.getName(), fiscalNote, city, state,
 							emissionDate, shipmentDate, countFiles);
 
-					// Separación según vacios
+					// Separación según vacios y Fecha
 					if (foldersEmptyCreated) {
+						
+						if (new java.util.Date(emissionDate)
+								.before(new java.util.Date(shipmentDate))) {
+							java.io.File to = new java.io.File(mainView
+									.getDestinyAddressText().getText()
+									+ MAJOR_SHIPMENT
+									+ temp.getName());
+							java.nio.file.Files
+									.copy(temp.toPath(), to.toPath());
+							majorShipmentDate++;
+						} else if (new java.util.Date(emissionDate)
+								.after(new java.util.Date(shipmentDate))) {
+							java.io.File to = new java.io.File(mainView
+									.getDestinyAddressText().getText()
+									+ MAJOR_EMISSION
+									+ temp.getName());
+							java.nio.file.Files
+									.copy(temp.toPath(), to.toPath());
+							majorEmissionDate++;
+						} else {
+							java.io.File to = new java.io.File(mainView
+									.getDestinyAddressText().getText()
+									+ EQUAL_DATA
+									+ temp.getName());
+							java.nio.file.Files
+									.copy(temp.toPath(), to.toPath());
+							equalDate++;
+						}
+						
 						if (city.isEmpty() || state.isEmpty()) {
 							java.io.File to = new java.io.File(mainView
 									.getDestinyAddressText().getText()
@@ -342,7 +345,7 @@ public class MainViewControl {
 			}
 		}
 	}
-
+	
 	private boolean loadFiles() {
 		boolean result = false;
 		folder = new java.io.File(mainView.getFRDNEAddressText().getText());
