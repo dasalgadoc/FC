@@ -179,7 +179,7 @@ public class MainViewControl {
 									.substring(
 											entity.FRDNELayoutConstants.BEGIN_DOCUMENT_SHIPMENT_DATE,
 											entity.FRDNELayoutConstants.END_DOCUMENT_SHIPMENT_DATE);
-		
+							
 						}
 						countFiles++;
 					}
@@ -190,32 +190,45 @@ public class MainViewControl {
 					// Separación según vacios y Fecha
 					if (foldersEmptyCreated) {
 						
-						if (new java.util.Date(emissionDate)
-								.before(new java.util.Date(shipmentDate))) {
-							java.io.File to = new java.io.File(mainView
-									.getDestinyAddressText().getText()
-									+ MAJOR_SHIPMENT
-									+ temp.getName());
-							java.nio.file.Files
-									.copy(temp.toPath(), to.toPath());
-							majorShipmentDate++;
-						} else if (new java.util.Date(emissionDate)
-								.after(new java.util.Date(shipmentDate))) {
-							java.io.File to = new java.io.File(mainView
-									.getDestinyAddressText().getText()
-									+ MAJOR_EMISSION
-									+ temp.getName());
-							java.nio.file.Files
-									.copy(temp.toPath(), to.toPath());
-							majorEmissionDate++;
-						} else {
-							java.io.File to = new java.io.File(mainView
-									.getDestinyAddressText().getText()
-									+ EQUAL_DATA
-									+ temp.getName());
-							java.nio.file.Files
-									.copy(temp.toPath(), to.toPath());
-							equalDate++;
+						java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("dd/MM/yyyy"); 
+						try{
+							java.util.Date emissionDat = format.parse(emissionDate);
+							java.util.Date shipmentDat = format.parse(shipmentDate);
+												
+							if (emissionDat.before(shipmentDat)) {
+								
+								java.io.File to = new java.io.File(mainView
+										.getDestinyAddressText().getText()
+										+ MAJOR_SHIPMENT
+										+ temp.getName());
+								java.nio.file.Files
+										.copy(temp.toPath(), to.toPath());
+								majorShipmentDate++;
+								
+								
+							} else if (emissionDat.after(shipmentDat)) {
+								
+								java.io.File to = new java.io.File(mainView
+										.getDestinyAddressText().getText()
+										+ MAJOR_EMISSION
+										+ temp.getName());
+								java.nio.file.Files
+										.copy(temp.toPath(), to.toPath());
+								majorEmissionDate++;
+
+							} else {
+								java.io.File to = new java.io.File(mainView
+										.getDestinyAddressText().getText()
+										+ EQUAL_DATA
+										+ temp.getName());
+								java.nio.file.Files
+										.copy(temp.toPath(), to.toPath());
+								equalDate++;
+
+							}
+							
+						}catch(Exception Ex){
+							// Log de Error
 						}
 						
 						if (city.isEmpty() || state.isEmpty()) {
@@ -238,7 +251,7 @@ public class MainViewControl {
 
 					// Separación según centro
 					if (foldersCenterCreated) {
-						System.out.println(fiscalNote);
+						//System.out.println(fiscalNote);
 						boolean descartable = checkDescartability(temp);
 						if (!descartable) {
 							int fiscalNoteInt = 0;
@@ -444,6 +457,7 @@ public class MainViewControl {
 	private final String DESCARTABLE = "\\Descartable\\";
 	private final String COPY_FILES_HEAD = "Se copiaron (";
 	private final String COPY_FILES_TRAILER = ") archivos al directorio de destino: ";
+	private final String DATE_ERROR = "Error en las fechas de la nota fiscal";
 	private final String UNEXISTED_FOLDER = "El directorio no existe.";
 	private final String FAILURE_CREATING_FOLDERS = "Falla en la creación de directorios destino";
 	private final String FILE_COUNT_HEAD = "Se encontraron (";
