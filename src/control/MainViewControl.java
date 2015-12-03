@@ -160,6 +160,7 @@ public class MainViewControl {
 											entity.FRDNELayoutConstants.BEGIN_PARTNER_STATE,
 											entity.FRDNELayoutConstants.END_PARTNER_STATE)
 									.trim();
+							System.out.println(city + "\t" + state);
 						}
 
 						if (currentLine

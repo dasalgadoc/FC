@@ -54,7 +54,7 @@ public class FRDNELayoutConstants {
     public final static int BEGIN_PARTNER_CITY = 164;
     public final static int END_PARTNER_CITY = 194;
     public final static int BEGIN_PARTNER_STATE = 194;
-    public final static int END_PARTNER_STATE = 197;
+    public final static int END_PARTNER_STATE = 196;
     public final static int BEGIN_PARTNER_CEP = 197;
     public final static int END_PARTNER_CEP = 204;
     
